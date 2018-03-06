@@ -1,16 +1,22 @@
 var submit = document.getElementById("submitQuery");
 var str;
-var sequence = new Array();
+var fibSequence = new Array();
 
 submit.addEventListener("click", function() {
 	// get value of input text box
 	var num = document.getElementById("inputText").value;
 
-	// check input
-	if(inputValidation(num)) {
+	// reset fibTable
+	document.getElementById("fibTable").innerHTML = "";
+
+	// validate input
+	if(inputValidation(num)) { // if valid, show result of input, create table
 		str = "The result of f(" + num + ") is " + doFibonacci(Number(num));
 
-		sequence.forEach(function(element) {
+		createTable();
+
+		// display contents in console
+		fibSequence.forEach(function(element) {
   			console.log(element);
 		});
 	}
@@ -39,13 +45,13 @@ function inputValidation(num) {
 }
 
 function doFibonacci(num) {
-	sequence = [];
-	sequence.push(0);
+	fibSequence = [];
+	fibSequence.push(0);
 
 	if(num === 0) {
 		return 0;
 	} else if(num === 1) {
-		sequence.push(1);
+		fibSequence.push(1);
 
 		return 1;
 	}
@@ -54,16 +60,35 @@ function doFibonacci(num) {
 	var num2 = 1;
 	var temp;
 
-	sequence.push(1);
-	sequence.push(1);
+	fibSequence.push(1);
+	fibSequence.push(1);
 
 	for(var i = 3; i <= num; i++) {
 		temp = num1;
 		num1 = num2;
 		num2 += temp;
 
-		sequence.push(num1 + num2);
+		fibSequence.push(num1 + num2);
 	}
 
 	return (num1 + num2);
+}
+
+function createTable() {
+	var tableStr = "<table border = 1px><tr>";
+
+	for(var i = 0; i < fibSequence.length; i++) {
+		tableStr += "<td>f(" + i + ")</td>";
+	}
+
+	tableStr += "</tr><tr>";
+
+	for(var i = 0; i < fibSequence.length; i++) {
+		tableStr += "<td>" + fibSequence[i] + "</td>";
+	}
+
+	tableStr += "</tr></table>";
+
+	//document.add.innerHTML(tableCreation);
+	document.getElementById("fibTable").innerHTML = tableStr;
 }
