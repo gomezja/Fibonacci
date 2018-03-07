@@ -1,6 +1,7 @@
 var submit = document.getElementById("submitQuery");
 var str;
 var fibSequence = new Array();
+var tableNums;
 
 submit.addEventListener("click", function() {
 	// get value of input text box
@@ -15,10 +16,7 @@ submit.addEventListener("click", function() {
 
 		createTable();
 
-		// display contents in console
-		fibSequence.forEach(function(element) {
-  			console.log(element);
-		});
+		teachTable();
 	}
 	
 	document.getElementById("output").innerHTML = str;
@@ -75,13 +73,13 @@ function doFibonacci(num) {
 }
 
 function createTable() {
-	var tableStr = "<table border = 1px><tr>";
+	var tableStr = "<h3>The resulting table</h3><table border = 1px><tr>";
 
 	for(var i = 0; i < fibSequence.length; i++) {
 		tableStr += "<td>f(" + i + ")</td>";
 	}
 
-	tableStr += "</tr><tr>";
+	tableStr += "</tr><tr id=\"numbers\">";
 
 	for(var i = 0; i < fibSequence.length; i++) {
 		tableStr += "<td>" + fibSequence[i] + "</td>";
@@ -89,6 +87,38 @@ function createTable() {
 
 	tableStr += "</tr></table>";
 
-	//document.add.innerHTML(tableCreation);
 	document.getElementById("fibTable").innerHTML = tableStr;
+
+	tableNums = document.querySelectorAll("#numbers td");
+}
+
+function teachTable() {
+	 var i = 0;
+	 var n1 = 0;
+	 var n2 = 0;
+	// //var abs = document.getElementsByTagName("h1");
+
+	var myVar = setInterval(function() {
+		tableNums[i].classList.add("highlightOutput"); // red
+
+		if(i == 1) { // special condition, initial value
+			tableNums[i].classList.add("highlightOutput"); // red
+		} 
+
+		if(i - 2 >= 0) { // if sequence is past initial values (0 and 1)
+			tableNums[i - 1].classList.add("highlightNumbers"); // blue
+			tableNums[i - 2].classList.add("highlightNumbers"); // blue
+		}
+
+		if((i - 3) >= 0) { // remove classes from number
+			tableNums[i - 3].classList = "";
+		}
+
+		i++;
+
+		if(i  >= tableNums.length) {
+			clearInterval(myVar);
+		}
+
+	}, 1500);
 }

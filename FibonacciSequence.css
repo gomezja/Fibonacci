@@ -1,0 +1,22 @@
+.highlightOutput {
+	font-weight: bold;
+	color: white;
+	background-color: rgb(230, 0, 0);
+}
+
+.highlightNumbers {
+	font-weight: bold;
+	background-color: blue;
+}
+
+.h3Invisible {
+	visibility: hidden;
+}
+
+table {
+	text-align: center;
+}
+
+td {
+	padding: 5px;
+}
