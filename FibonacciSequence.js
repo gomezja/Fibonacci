@@ -1,41 +1,47 @@
-var submit = document.getElementById("submitQuery");
-var str;
+var submitBtn = document.getElementById("submitQuery");
+var fibOutputStr;
 var fibSequence = new Array();
 var tableNums;
+var timeInterval = null;
 
-submit.addEventListener("click", function() {
+submitBtn.addEventListener("click", function() {
 	// get value of input text box
 	var num = document.getElementById("inputText").value;
 
 	// reset fibTable
 	document.getElementById("fibTable").innerHTML = "";
 
+	// reset table fib teaching
+	if(timeInterval != null) {
+		stopTeaching(timeInterval);
+	}
+
 	// validate input
 	if(inputValidation(num)) { // if valid, show result of input, create table
-		str = "The result of f(" + num + ") is " + doFibonacci(Number(num));
+		fibOutputStr = "The result of f(" + num + ") is " + doFibonacci(Number(num));
 
 		createTable();
 
 		teachTable();
 	}
 	
-	document.getElementById("output").innerHTML = str;
+	document.getElementById("output").innerHTML = fibOutputStr;
 });
 
 function inputValidation(num) {
 	var isValidInt = true;
 
 	if(num < 0) { // check if num is a negative
-		str = "Invalid Input: negative number";
+		fibOutputStr = "Invalid Input: negative number";
 		return false;
 	} else if(num === "") { // check if num is an empty string
-		str = "Invalid Input: empty field";
+		fibOutputStr = "Invalid Input: empty field";
 	 	return false;
 	} else if(isNaN(Number(num))) { // check if num is not a number
-		str = "Invalid Input: not a number";
+		fibOutputStr = "Invalid Input: not a number";
 		return false;
 	} else if(num % 1 != 0) { // check if num is a decimal
-		str = "Invalid Input: decimal number";
+		fibOutputStr = "Invalid Input: decimal number";
 		return false;
 	}
 
@@ -93,32 +99,38 @@ function createTable() {
 }
 
 function teachTable() {
-	 var i = 0;
-	 var n1 = 0;
-	 var n2 = 0;
-	// //var abs = document.getElementsByTagName("h1");
+	var i = 0;
+	var n1 = 0;
+	var n2 = 0;
 
-	var myVar = setInterval(function() {
-		tableNums[i].classList.add("highlightOutput"); // red
+	timeInterval = setInterval(function() {
+		tableNums[i].classList.toggle("highlightOutput"); // red
 
-		if(i == 1) { // special condition, initial value
-			tableNums[i].classList.add("highlightOutput"); // red
-		} 
+		if(i == 2) {
+			tableNums[i - 1].classList.toggle("highlightOutput"); // red
+			tableNums[i - 2].classList.toggle("highlightOutput"); // red
 
-		if(i - 2 >= 0) { // if sequence is past initial values (0 and 1)
-			tableNums[i - 1].classList.add("highlightNumbers"); // blue
-			tableNums[i - 2].classList.add("highlightNumbers"); // blue
+			tableNums[i - 1].classList.toggle("highlightNumbers"); // blue
+			tableNums[i - 2].classList.toggle("highlightNumbers"); // blue
 		}
 
-		if((i - 3) >= 0) { // remove classes from number
-			tableNums[i - 3].classList = "";
+		if(i > 2) {
+			tableNums[i - 1].classList.toggle("highlightOutput"); // red
+			tableNums[i - 1].classList.toggle("highlightNumbers"); // blue
+		}
+
+		if((i - 3) >= 0) { // remove class from current last number
+			tableNums[i - 3].classList.toggle("highlightNumbers"); // blue
 		}
 
 		i++;
 
-		if(i  >= tableNums.length) {
-			clearInterval(myVar);
+		if(i  >= tableNums.length) { // end of table has been reached
+			stopTeaching(timeInterval);
 		}
-
 	}, 1500);
+}
+
+function stopTeaching(timeInterval) {
+	clearInterval(timeInterval);
 }
