@@ -1,0 +1,135 @@
+* {
+    font-family: 'Cabin', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #393939;
+    
+    margin: 0;
+
+    box-sizing: border-box;
+}
+
+body, html {
+    background-color: #fffcef;
+}
+
+/* main header */
+h1 {
+	color: #eb8908;
+	text-shadow: 0px 1px 1px rgba(71, 71, 71, 0.6);
+    font-size: 32px;
+    letter-spacing: 5px;
+    font-weight: 600;
+}
+
+/*****************************************************/
+/* SECTION CLASS
+/*****************************************************/
+/* all elements in section class */
+.section * {
+    margin: 10px 0;
+}
+
+.section {
+	margin: 3.5% 0;
+	/* background-color: red; */
+}
+
+/*****************************************************/
+/* TEXT INPUT FIELD
+/*****************************************************/
+input[type=text] {
+    background-color: #e2d9af;
+    border-radius: 9px;
+    border: none;
+
+    padding: 8px;
+}
+
+/*****************************************************/
+/* SUBMIT BUTTON
+/*****************************************************/
+/* custom submit button */
+input[type=submit] {
+    font-size: 16px;
+    letter-spacing: 4px;
+	display: inline;
+
+    padding: 8px;
+    margin-left: 10px;
+    /* margin-right: 10px; */
+
+    color: #ffffff;
+    background-color: #eb8908;
+
+    border-radius: 9px;
+    border: 2px solid #ca7608;
+
+    box-shadow: 0px 3px 5px rgba(50,50,93,0.1),
+                0px 1px 3px rgba(0,0,0,0.07);
+    text-shadow: 0px 2px 3px rgba(50,50,93,0.7);
+
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+/* shift 1px when clicked */
+input[type=submit]:active {
+    position: relative;
+    top: -1px;
+}
+
+/* show pointer when hovered */
+input[type=submit]:hover {
+    cursor: pointer;
+}
+
+/*****************************************************/
+/* OTHER STUFF
+/*****************************************************/
+.text-center {
+	text-align: center;
+}
+
+
+
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+	padding: 8px 0;
+}
+
+.col-10 {
+    flex: 83.33%;
+    max-width: 83.33%;
+	padding: 0 0.5%;
+}
+
+.offset-1 {
+    margin-left: 8.33%;
+}
+
+.highlightOutput {
+	font-weight: bold;
+	color: white;
+	background-color: rgb(230, 0, 0);
+}
+
+.highlightNumbers {
+	font-weight: bold;
+	color: white;
+	background-color: blue;
+}
+
+.h3Invisible {
+	visibility: hidden;
+}
+
+table {
+	text-align: center;
+}
+
+td {
+	padding: 5px;
+}
