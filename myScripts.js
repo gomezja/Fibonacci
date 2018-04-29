@@ -79,10 +79,11 @@ function doFibonacci(num) {
 }
 
 function createTable() {
-	var tableStr = "<h3>The resulting table</h3><table border = 1px><tr>";
+	//start of table
+	var tableStr = "<h2>The resulting table</h2><div class=\"results\" style=\"overflow-x:auto;\"><table border = 1px><tr>";
 
 	for(var i = 0; i < fibSequence.length; i++) {
-		tableStr += "<td>f(" + i + ")</td>";
+		tableStr += "<th>f(" + i + ")</th>";
 	}
 
 	tableStr += "</tr><tr id=\"numbers\">";
@@ -91,7 +92,8 @@ function createTable() {
 		tableStr += "<td>" + fibSequence[i] + "</td>";
 	}
 
-	tableStr += "</tr></table>";
+	// end of table	
+	tableStr += "</tr></table></div>";
 
 	document.getElementById("fibTable").innerHTML = tableStr;
 

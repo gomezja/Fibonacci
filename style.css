@@ -22,6 +22,15 @@ h1 {
     font-weight: 600;
 }
 
+/* table header */
+h2 {
+	color: #eb8908;
+	text-shadow: 0px 1px 1px rgba(71, 71, 71, 0.6);
+    font-size: 18px;
+    letter-spacing: 5px;
+    font-weight: 600;
+}
+
 /*****************************************************/
 /* SECTION CLASS
 /*****************************************************/
@@ -34,6 +43,8 @@ h1 {
 	margin: 3.5% 0;
 	/* background-color: red; */
 }
+
+
 
 /*****************************************************/
 /* TEXT INPUT FIELD
@@ -85,6 +96,54 @@ input[type=submit]:hover {
 }
 
 /*****************************************************/
+/* TABLE STUFF
+/*****************************************************/
+.results {
+    color: #ffffff;
+    background-color: #e2d9af;
+    border-radius: 9px;
+    padding: 2%;
+}
+
+table {
+    text-align: center;
+
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 2px solid #ca7608;
+}
+
+th, td {
+    padding: 5px;
+}
+
+th {
+    font-weight: 600;
+    background-color: #cec392;
+}
+
+td {
+    background-color: #e9e4c9;
+}
+
+/*****************************************************/
+/* TRAVERSE TABLE
+/*****************************************************/
+.highlightOutput {
+	font-weight: bold;
+	color: white;
+    background-color: #eb8908;
+}
+
+.highlightNumbers {
+	font-weight: bold;
+	color: white;
+    background-color: #eea545;
+}
+
+/*****************************************************/
 /* OTHER STUFF
 /*****************************************************/
 .text-center {
@@ -97,7 +156,7 @@ input[type=submit]:hover {
 .row {
     display: flex;
     flex-wrap: wrap;
-	padding: 8px 0;
+	/* padding: 8px 0; */
 }
 
 .col-10 {
@@ -110,26 +169,3 @@ input[type=submit]:hover {
     margin-left: 8.33%;
 }
 
-.highlightOutput {
-	font-weight: bold;
-	color: white;
-	background-color: rgb(230, 0, 0);
-}
-
-.highlightNumbers {
-	font-weight: bold;
-	color: white;
-	background-color: blue;
-}
-
-.h3Invisible {
-	visibility: hidden;
-}
-
-table {
-	text-align: center;
-}
-
-td {
-	padding: 5px;
-}
