@@ -82,13 +82,14 @@ input[type=text] {
 /* SUBMIT BUTTON
 /*****************************************************/
 /* custom submit button */
-input[type=submit] {
+input[type=submit],
+.table-btn {
     color: #ffffff;
     background-color: #eb8908;
 
     font-size: 16px;
     letter-spacing: 4px;
-	display: inline;
+	display: inline-block;
 
     padding: 8px;
     margin-left: 10px;
@@ -105,7 +106,8 @@ input[type=submit] {
 }
 
 /* shift 1px when clicked */
-input[type=submit]:active {
+input[type=submit]:active,
+.table-btn:active {
     position: relative;
     top: -1px;
 }
@@ -113,6 +115,18 @@ input[type=submit]:active {
 /* show pointer when hovered */
 input[type=submit]:hover {
     cursor: pointer;
+}
+
+.table-btn {
+    text-decoration: none;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: inline-block;
 }
 
 /*****************************************************/

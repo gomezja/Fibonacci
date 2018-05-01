@@ -1,10 +1,12 @@
-var submitBtn = document.getElementById("submitQuery");
 var fibOutputStr;
 var fibSequence = new Array();
 var tableNums;
 var timeInterval = null;
+var q = 0;
+var playing = false;
 
-submitBtn.addEventListener("click", function() {
+// submit button was clicked
+document.getElementById("submitQuery").addEventListener("click", function() {
 	// get value of input text box
 	var num = document.getElementById("inputText").value;
 
@@ -13,8 +15,11 @@ submitBtn.addEventListener("click", function() {
 
 	// reset table fib teaching
 	if(timeInterval != null) {
-		stopTeaching(timeInterval);
+		stopTeaching();
+		q = 0;
 	}
+
+	var btns = document.querySelectorAll(".table-btn");
 
 	// validate input
 	if(inputValidation(num)) { // if valid, show result of input, create table
@@ -22,9 +27,19 @@ submitBtn.addEventListener("click", function() {
 
 		createTable();
 
+		// show table control buttons
+		for(let i = 0; i < btns.length; i++) {
+			btns[i].classList.remove("hide");
+		}
+
 		teachTable();
+	} else {
+		// hide table control buttons
+		for(let i = 0; i < btns.length; i++) {
+			btns[i].classList.add("hide");
+		}
 	}
-	
+
 	document.getElementById("output").innerHTML = fibOutputStr;
 });
 
@@ -105,6 +120,7 @@ function createTable() {
 		tableStr += "<th>f(" + i + ")</th>";
 	}
 
+	// end table header row and start next row
 	tableStr += "</tr><tr class=\"numbers\">";
 
 	for(var i = 0; i < fibSequence.length; i++) {
@@ -121,46 +137,74 @@ function createTable() {
 }
 
 /**
- * goes through fibonacci sequence highlighting cells
+ * iterate through tableNums sequence
  */
 function teachTable() {
-	var i = 0;
-	var n1 = 0;
-	var n2 = 0;
+	playing = true;
 
 	timeInterval = setInterval(function() {
-		tableNums[i].classList.toggle("highlightOutput"); // red
+		tableNums[q].classList.toggle("highlightOutput"); // red
 
-		if(i == 2) {
-			tableNums[i - 1].classList.toggle("highlightOutput"); // red
-			tableNums[i - 2].classList.toggle("highlightOutput"); // red
+		if(q == 2) {
+			tableNums[q - 1].classList.toggle("highlightOutput"); // red
+			tableNums[q - 2].classList.toggle("highlightOutput"); // red
 
-			tableNums[i - 1].classList.toggle("highlightNumbers"); // blue
-			tableNums[i - 2].classList.toggle("highlightNumbers"); // blue
+			tableNums[q - 1].classList.toggle("highlightNumbers"); // blue
+			tableNums[q - 2].classList.toggle("highlightNumbers"); // blue
 		}
 
-		if(i > 2) {
-			tableNums[i - 1].classList.toggle("highlightOutput"); // red
-			tableNums[i - 1].classList.toggle("highlightNumbers"); // blue
+		if(q > 2) {
+			tableNums[q - 1].classList.toggle("highlightOutput"); // red
+			tableNums[q - 1].classList.toggle("highlightNumbers"); // blue
+		}
+		
+		// remove class from current last number
+		if((q - 3) >= 0) {
+			tableNums[q - 3].classList.toggle("highlightNumbers"); // blue
 		}
 
-		if((i - 3) >= 0) { // remove class from current last number
-			tableNums[i - 3].classList.toggle("highlightNumbers"); // blue
-		}
-
-		i++;
-
-		if(i  >= tableNums.length) { // end of table has been reached
+		q++;
+		
+		// end of table has been reached
+		if(q >= tableNums.length) {
 			stopTeaching(timeInterval);
 		}
-	}, 1500);
+	}, 1000);
 }
 
 /**
- * stops the timer
- * 
- * @param {*} timeInterval 
+ * halts current iteration, and restarts and beginning
  */
-function stopTeaching(timeInterval) {
+function restart() {
+	stopTeaching();
+
+	// remove highlight classes from table
+	for(let i = 0; i < tableNums.length; i++) {
+		tableNums[i].classList.remove("highlightOutput");
+		tableNums[i].classList.remove("highlightNumbers");
+	}
+
+	// reset index
+	q = 0;
+
+	// restart teachTable function
+	teachTable();
+}
+
+function pause() {
+	if(playing) {
+		stopTeaching();
+	}
+}
+
+function play() {
+	if(!playing) {
+		teachTable();
+	}
+}
+
+function stopTeaching() {
+	console.log("stop teaching");
 	clearInterval(timeInterval);
+	playing = false;
 }
