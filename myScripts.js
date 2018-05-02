@@ -5,6 +5,8 @@ var timeInterval = null;
 var q = 0;
 var playing = false;
 
+var btn = document.getElementById("control-btn");
+
 // submit button was clicked
 document.getElementById("submitQuery").addEventListener("click", function() {
 	// get value of input text box
@@ -20,6 +22,7 @@ document.getElementById("submitQuery").addEventListener("click", function() {
 	}
 
 	var btns = document.querySelectorAll(".table-btn");
+	btn.innerHTML = "Pause";
 
 	// validate input
 	if(inputValidation(num)) { // if valid, show result of input, create table
@@ -187,24 +190,26 @@ function restart() {
 	// reset index
 	q = 0;
 
+	// reset control button
+	btn.innerHTML = "Pause";
+
 	// restart teachTable function
 	teachTable();
 }
 
-function pause() {
-	if(playing) {
+// control button text
+btn.addEventListener("click", function() {
+    if(playing) {
+		this.innerHTML = "Play";
 		stopTeaching();
-	}
-}
-
-function play() {
-	if(!playing) {
+    } else {
+		this.innerHTML = "Pause";
 		teachTable();
-	}
-}
+    }
+});
 
 function stopTeaching() {
-	console.log("stop teaching");
 	clearInterval(timeInterval);
+
 	playing = false;
 }

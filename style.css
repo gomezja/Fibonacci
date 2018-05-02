@@ -119,14 +119,11 @@ input[type=submit]:hover {
 
 .table-btn {
     text-decoration: none;
+    width: 100px;
 }
 
 .hide {
     display: none;
-}
-
-.show {
-    display: inline-block;
 }
 
 /*****************************************************/
