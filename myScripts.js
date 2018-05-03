@@ -34,6 +34,8 @@ document.getElementById("submitQuery").addEventListener("click", function() {
 		for(let i = 0; i < btns.length; i++) {
 			btns[i].classList.remove("hide");
 		}
+		
+		document.getElementById("table-h2").classList.remove("hide");
 
 		teachTable();
 	} else {
@@ -41,6 +43,8 @@ document.getElementById("submitQuery").addEventListener("click", function() {
 		for(let i = 0; i < btns.length; i++) {
 			btns[i].classList.add("hide");
 		}
+
+		document.getElementById("table-h2").classList.add("hide");
 	}
 
 	document.getElementById("output").innerHTML = fibOutputStr;
@@ -116,7 +120,7 @@ function doFibonacci(num) {
  */
 function createTable() {
 	//start of table
-	var tableStr = "<h2>The resulting table</h2><div class=\"results\" style=\"overflow-x:auto;\"><table border = 1px><tr>";
+	var tableStr = "<div class=\"results\" style=\"overflow-x:auto;\"><table border = 1px><tr>";
 
 	// table headers
 	for(var i = 0; i < fibSequence.length; i++) {

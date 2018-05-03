@@ -14,9 +14,10 @@
 			<div class="col">
 				<!-- title and intro -->
 				<h1>Fibonacci Calculator</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum fugit quaerat modi recusandae commodi. 
-					Saepe maxime pariatur odit est autem nostrum officiis quae, dolores incidunt vitae blanditiis, id mollitia 
-					temporibus.</p>
+				<p>
+					Enter a valid number, any integer greater than or equal to zero, in the input field down below and press "Submit" when finished.
+					Once a valid number has been entered, the output and the resulting Fibonacci sequence of the input will be displayed.
+				</p>
 
 				<!-- text input and submit button -->
 				<input type="text" placeholder="Enter a number" id="inputText">
@@ -30,6 +31,7 @@
 		<!-- the fibonacci table -->
 		<div class="row">
 			<div class="col">
+				<h2 class="hide" id="table-h2">Fibonacci Sequence</h2>
 				<p id="fibTable"></p>
 				<a class="table-btn hide" href="#" onclick="restart()">Restart</a>
 				<a class="table-btn hide" id="control-btn" href="#">Pause</a>
